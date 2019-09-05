@@ -2,12 +2,12 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
-import { auth, createUserProfileDocument } from 'firebase/firebase.utils';
+import { auth, createUserProfileDocument } from 'firebase/Firebase.Utils';
 import Homepage from 'pages/homepage/Home';
 import ShopPage from 'pages/shop/Shop';
 import SignInAndSignUpPage from 'pages/signin-and-signup/SignIn-SignUp';
 import Header from 'components/header/Header';
-import { setCurrentUser } from 'redux/user/user.actions';
+import { setCurrentUser } from 'redux/user/User.Actions';
 
 class App extends React.Component {
   unsubcribeFromAuth = null;
