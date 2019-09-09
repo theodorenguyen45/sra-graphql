@@ -3,16 +3,16 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { auth, createUserProfileDocument } from 'firebase/FirebaseUtils';
+import { auth, createUserProfileDocument } from '../firebase/FirebaseUtils';
 
-import Homepage from 'pages/home/Home';
-import ShopPage from 'pages/shop/Shop';
-import SignInAndSignUpPage from 'pages/signin-and-signup/SignInSignUp';
-import CheckoutPage from 'pages/checkout/Checkout';
+import Homepage from '../pages/home/Home';
+import ShopPage from '../pages/shop/Shop';
+import SignInAndSignUpPage from '../pages/signinandsignup/SignInSignUp';
+import CheckoutPage from '../pages/checkout/Checkout';
 
-import Header from 'components/header/Header';
+import Header from '../components/header/Header';
 
-import { selectCurrentUser } from 'redux/user/UserSelector';
+import { selectCurrentUser } from '../redux/user/UserSelector';
 import { setCurrentUser } from '../redux/user/UserActions.js';
 
 import './App.css';

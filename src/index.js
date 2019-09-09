@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
-import { store, persistor } from 'redux/store';
+import { store, persistor } from './redux/store';
 
-import App from 'commons/App';
+import App from './commons/App';
 
 import './index.css';
 

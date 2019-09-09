@@ -3,9 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { selectCollectionsForPreView } from 'redux/shop/ShopSelector';
+import { selectCollectionsForPreView } from '../../redux/shop/ShopSelector';
 
-import CollectionPreview from 'components/collectionpreview/CollectionPreview';
+import CollectionPreview from '../collectionpreview/CollectionPreview';
 
 import './CollectionOverview.scss';
 

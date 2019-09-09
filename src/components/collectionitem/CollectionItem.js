@@ -1,8 +1,11 @@
 import React from 'react';
+
 import { connect } from 'react-redux';
-import { addItem } from 'redux/cart/CartActions';
+import { addItem } from '../../redux/cart/CartActions';
+
+import CustomButton from '../custombutton/CustomButton';
+
 import './CollectionItem.scss';
-import CustomButton from 'components/custombutton/CustomButton';
 
 const CollectionItem = ({ item, addItem }) => {
   const { name, price, imageUrl } = item;
