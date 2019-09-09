@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { selectCartItems } from 'redux/cart/Cart.Selector';
-import { selectCartTotal } from 'redux/cart/Cart.Selector';
+import { selectCartItems } from 'redux/cart/CartSelector';
+import { selectCartTotal } from 'redux/cart/CartSelector';
 
-import CheckoutItem from 'components/checkout-item/Checkout-Item';
+import CheckoutItem from 'components/checkout-item/CheckoutItem';
 
 import './Checkout.scss';
 import StripeCheckoutButton from 'components/stripe-button/Stripe.Button';

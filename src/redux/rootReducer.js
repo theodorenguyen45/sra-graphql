@@ -3,9 +3,9 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import userReducer from 'redux/user/UserReducer';
-import cartReducer from 'redux/cart/Cart.Reducer';
-import directoryReducer from 'redux/directory/Directory.Reducer';
-import shopReducer from 'redux/shop/Shop.Reducer';
+import cartReducer from 'redux/cart/CartReducer';
+import directoryReducer from 'redux/directory/DirectoryReducer';
+import shopReducer from 'redux/shop/ShopReducer';
 
 const persistConfig = {
   key: 'root',

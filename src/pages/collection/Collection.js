@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import CollectionItem from 'components/collection-item/Collection-Item';
+import CollectionItem from 'components/collection-item/CollectionItem';
 
-import { selectCollection } from 'redux/shop/Shop.Selector';
+import { selectCollection } from 'redux/shop/ShopSelector';
 
 import './Collection.scss';
 
