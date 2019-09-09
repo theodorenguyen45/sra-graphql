@@ -12,7 +12,7 @@ import CheckoutPage from 'pages/checkout/Checkout';
 
 import Header from 'components/header/Header';
 
-import { selectCurrentUser } from 'redux/user/User.Selector';
+import { selectCurrentUser } from 'redux/user/UserSelector';
 import { setCurrentUser } from '../redux/user/UserActions.js';
 
 import './App.css';

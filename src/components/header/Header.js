@@ -7,7 +7,7 @@ import { auth } from 'firebase/Firebase.Utils';
 import CartIcon from 'components/cart-icon/Cart-Icon';
 import CartDropdown from 'components/cart-dropdown/Cart-Dropdown';
 import { selectCartHidden } from 'redux/cart/Cart.Selector';
-import { selectCurrentUser } from 'redux/user/User.Selector';
+import { selectCurrentUser } from 'redux/user/UserSelector';
 
 import './Header.scss';
 
