@@ -7,7 +7,7 @@ import CustomButton from '../custombutton/CustomButton';
 
 import './SignIn.scss';
 
-export default class SignIn extends React.Component {
+class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,3 +68,5 @@ export default class SignIn extends React.Component {
     );
   }
 }
+
+export default SignIn;
