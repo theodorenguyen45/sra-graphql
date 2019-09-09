@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { selectDirectorySections } from 'redux/directory/DirectorySelector';
 
-import MenuItem from 'components/menu-item/MenuItem';
+import MenuItem from 'components/menuitem/MenuItem';
 
 import './Directory.scss';
 
