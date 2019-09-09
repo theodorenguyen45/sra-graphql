@@ -8,6 +8,10 @@
     width: 30%;
   }
 
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   .item-details {
     width: 70%;
     display: flex;

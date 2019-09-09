@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { auth, createUserProfileDocument } from 'firebase/Firebase.Utils';
 
-import Homepage from 'pages/homepage/Home';
+import Homepage from 'pages/home/Home';
 import ShopPage from 'pages/shop/Shop';
 import SignInAndSignUpPage from 'pages/signin-and-signup/SignIn-SignUp';
 import CheckoutPage from 'pages/checkout/Checkout';
