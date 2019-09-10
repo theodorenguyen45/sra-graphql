@@ -15,7 +15,8 @@ class SignUp extends React.Component {
       displayName: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      err: ''
     };
   }
 
@@ -43,8 +44,8 @@ class SignUp extends React.Component {
         password: '',
         confirmPassword: ''
       });
-    } catch (err) {
-      console.log(err);
+    } catch ({ message }) {
+      this.setState({ err: message });
     }
   };
 
@@ -55,11 +56,12 @@ class SignUp extends React.Component {
   };
 
   render() {
-    const { displayName, email, password, confirmPassword } = this.state;
+    const { displayName, email, password, confirmPassword, err } = this.state;
     return (
       <div className='sign-up'>
         <h2 className='title'>I do not have an account</h2>
         <span>Sign up with your email and password</span>
+        {err && <p className='error'>{err}</p>}
         <form className='sign-up-form' onSubmit={this.handleSubmit}>
           <FormInput
             type='text'
