@@ -1,5 +1,10 @@
 import React from 'react';
+
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import { fetchCollectionsStartAsync } from '../../redux/shop/ShopActions';
+import { selectIsCollectionFetching } from '../../redux/shop/ShopSelector';
 
 import { Route } from 'react-router-dom';
 
@@ -8,42 +13,20 @@ import Collection from '../collection/Collection';
 
 import WithSpinner from '../../components/withspinner/WithSpinner';
 
-import { updateCollections } from '../../redux/shop/ShopActions';
-
-import {
-  firestore,
-  convertCollectionsSnapshotToMap
-} from '../../firebase/FirebaseUtils';
-
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CollectionWithSpinner = WithSpinner(Collection);
 
 class ShopPage extends React.Component {
-  state = {
-    isLoading: true
-  };
-
   unsubcribeFromSnapshot = null;
 
   componentDidMount() {
-    const { updateCollection } = this.props;
-    const collectionRef = firestore.collection('collections');
-
-    collectionRef.get().then(snapShot => {
-      const collectionMap = convertCollectionsSnapshotToMap(snapShot);
-
-      updateCollection(collectionMap);
-      this.setState({ isLoading: false });
-    });
+    const { fetchCollectionsStartAsync } = this.props;
+    fetchCollectionsStartAsync();
   }
 
-  // componentWillUnmount() {
-  //   this.unsubcribeFromSnapshot();
-  // }
-
   render() {
-    const { match } = this.props;
-    const { isLoading } = this.state;
+    const { match, isLoading } = this.props;
+
     return (
       <div className='shop-page'>
         <Route
@@ -64,11 +47,15 @@ class ShopPage extends React.Component {
   }
 }
 
+const mapStateToProps = createStructuredSelector({
+  isLoading: selectIsCollectionFetching
+});
+
 const mapDispatchToProps = dispatch => ({
-  updateCollection: collectionMap => dispatch(updateCollections(collectionMap))
+  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync())
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ShopPage);
