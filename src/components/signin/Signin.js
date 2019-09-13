@@ -12,7 +12,8 @@ class SignIn extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     };
   }
 
@@ -25,7 +26,7 @@ class SignIn extends React.Component {
       await auth.signInWithEmailAndPassword(email, password);
       this.setState({ email: '', password: '' });
     } catch (err) {
-      console.log(err);
+      this.setState({ error: 'Wrong username or password' });
     }
   };
 
@@ -40,6 +41,7 @@ class SignIn extends React.Component {
       <div className='sign-in'>
         <h2>Already has an account?</h2>
         <span>Sign in with your email and password</span>
+        {this.state.error && <p className='error'>{this.state.error}</p>}
         <form onSubmit={this.handleSubmit}>
           <FormInput
             name='email'
