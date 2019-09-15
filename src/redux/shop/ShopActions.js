@@ -19,17 +19,15 @@ export const fetchCollectionsFailure = errorMessage => ({
   payload: errorMessage
 });
 
-export const fetchCollectionsStartAsync = () => {
-  return dispatch => {
-    const collectionRef = firestore.collection('collections');
-    dispatch(fetchCollectionsStart());
+export const fetchCollectionsStartAsync = () => dispatch => {
+  const collectionRef = firestore.collection('collections');
+  dispatch(fetchCollectionsStart());
 
-    collectionRef
-      .get()
-      .then(snapShot => {
-        const collectionMap = convertCollectionsSnapshotToMap(snapShot);
-        dispatch(fetchCollectionsSuccess(collectionMap));
-      })
-      .catch(error => dispatch(fetchCollectionsFailure(error.message)));
-  };
+  collectionRef
+    .get()
+    .then(snapShot => {
+      const collectionMap = convertCollectionsSnapshotToMap(snapShot);
+      dispatch(fetchCollectionsSuccess(collectionMap));
+    })
+    .catch(error => dispatch(fetchCollectionsFailure(error.message)));
 };
