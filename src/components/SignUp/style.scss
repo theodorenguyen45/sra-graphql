@@ -1,12 +1,18 @@
 .sign-up {
   display: flex;
   flex-direction: column;
-  width: 380px;
+  min-width: 320px;
+  margin: 20px;
 
   .title {
     margin: 10px 0;
   }
   .error {
     color: red;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
   }
 }

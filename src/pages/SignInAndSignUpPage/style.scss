@@ -1,6 +1,26 @@
 .signin-signup {
-  width: 850px;
   display: flex;
-  justify-content: space-between;
-  margin: 30px auto;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  margin: 20px 60px;
+
+  .sign-in {
+    .buttons {
+      flex-flow: column;
+
+      .custom-button {
+        margin: 10px;
+      }
+    }
+  }
+
+  .sign-up {
+    .buttons {
+      flex-flow: column;
+
+      .custom-button {
+        margin: 10px;
+      }
+    }
+  }
 }

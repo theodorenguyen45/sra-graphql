@@ -40,3 +40,12 @@
     cursor: pointer;
   }
 }
+
+@media only screen and (max-width: 546px) {
+  .checkout-item {
+    .quantity {
+      display: flex;
+      padding-left: 10px;
+    }
+  }
+}
