@@ -28,3 +28,9 @@
     margin-top: auto;
   }
 }
+@media only screen and (max-width: 546px) {
+  .cart-dropdown {
+    top: 155px;
+    right: 72px;
+  }
+}
