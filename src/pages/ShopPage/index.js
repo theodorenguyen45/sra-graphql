@@ -2,8 +2,8 @@ import React from 'react'
 
 import { Route } from 'react-router-dom'
 
-import CollectionsOverviewContainer from 'components/CollectionsOverview'
-import CollectionPageContainer from 'pages/CollectionPage'
+import { default as CollectionsOverview } from 'components/CollectionsOverview/container'
+import { default as CollectionPage } from 'pages/CollectionPage/container'
 
 export default ({ match }) => {
   return (
@@ -11,11 +11,11 @@ export default ({ match }) => {
       <Route
         exact
         path={`${match.path}`}
-        component={CollectionsOverviewContainer}
+        component={CollectionsOverview}
       />
       <Route
         path={`${match.path}/:collectionId`}
-        component={CollectionPageContainer}
+        component={CollectionPage}
       />
     </div>
   )
