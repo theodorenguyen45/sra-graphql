@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CollectionItem from 'components/CollectionItem'
+import { default as CollectionItem } from 'components/CollectionItem/container'
 
 import './style.scss'
 

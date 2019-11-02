@@ -13,10 +13,10 @@ import { ApolloClient, gql } from 'apollo-boost'
 import { store, persistor } from './redux/store'
 
 import App from './commons/App'
-
 import './index.css'
-
 import * as serviceWorker from './commons/serviceWorker'
+
+import { resolvers, typeDefs } from 'graphql/resolvers'
 
 const httpLink = createHttpLink({
   uri: 'https://crwn-clothing.com'
@@ -26,7 +26,16 @@ const cache = new InMemoryCache()
 
 const client = new ApolloClient({
   link: httpLink,
-  cache
+  cache,
+  typeDefs,
+  resolvers
+})
+
+client.writeData({
+  data: {
+    cartHidden: true,
+    cartItems: []
+  }
 })
 
 client
