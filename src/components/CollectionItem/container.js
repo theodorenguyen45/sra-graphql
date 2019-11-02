@@ -15,7 +15,7 @@ export default props => (
     {addItemToCart => (
       <CollectionItem
         {...props}
-        onClick={item => addItemToCart({ variables: { item } })}
+        addItem={item => addItemToCart({ variables: { item } })}
       />
     )}
   </Mutation>

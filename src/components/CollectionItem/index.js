@@ -7,6 +7,8 @@ import './style.scss'
 export default ({ item, addItem }) => {
   const { name, price, imageUrl } = item
 
+  console.log(addItem)
+
   return (
     <div className='collection-item'>
       <div
