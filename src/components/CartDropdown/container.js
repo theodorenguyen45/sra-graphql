@@ -21,9 +21,8 @@ export default () => (
   <Mutation mutation={TOGGLE_CART_HIDDEN}>
     {toggleCartHidden => (
       <Query query={GET_CART_ITEMS}>
-        {data => {
+        {({ data }) => {
           const { cartItems } = data
-
           return (
             <CartDropdown
               cartItems={cartItems}

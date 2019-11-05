@@ -11,7 +11,7 @@ import {
 import Homepage from 'pages/HomePage'
 import ShopPage from 'pages/ShopPage'
 import SignInAndSignUpPage from 'pages/SignInAndSignUpPage'
-import CheckoutPage from 'pages/CheckoutPage'
+import { default as CheckoutPage } from 'pages/CheckoutPage/container'
 
 import { default as Header } from 'components/Header/container'
 
