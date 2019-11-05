@@ -49,15 +49,19 @@ export default () => {
         password
       )
 
-      await createUserProfileDocument(user, { displayName })
-
-      setInput({
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        isSubmitting: false
+      const res = await createUserProfileDocument(user, {
+        displayName
       })
+
+      if (res) {
+        setInput({
+          displayName: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+          isSubmitting: false
+        })
+      }
     } catch ({ message }) {
       setInput({ ...input, err: message, isSubmitting: false })
     }

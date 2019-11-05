@@ -22,8 +22,18 @@ export default () => {
     setInput({ ...input, isSubmitting: true })
 
     try {
-      await auth.signInWithEmailAndPassword(email, password)
-      setInput({ email: '', password: '', isSubmitting: false })
+      const res = await auth.signInWithEmailAndPassword(
+        email,
+        password
+      )
+
+      if (res) {
+        setInput({
+          email: '',
+          password: '',
+          isSubmitting: false
+        })
+      }
     } catch (err) {
       setInput({
         ...input,
