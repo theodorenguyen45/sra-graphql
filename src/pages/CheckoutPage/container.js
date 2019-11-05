@@ -11,11 +11,29 @@ const GET_CART_ITEMS = gql`
   }
 `
 
+const GET_CART_TOTAL = gql`
+  {
+    total @client
+  }
+`
+
 export default () => (
   <Query query={GET_CART_ITEMS}>
     {({ data }) => {
       const { cartItems } = data
-      return <CheckoutPage cartItems={cartItems} />
+      return (
+        <Query query={GET_CART_TOTAL}>
+          {({ data }) => {
+            const { total } = data
+            return (
+              <CheckoutPage
+                cartItems={cartItems}
+                total={total}
+              />
+            )
+          }}
+        </Query>
+      )
     }}
   </Query>
 )
