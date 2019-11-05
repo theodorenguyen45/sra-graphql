@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Query } from 'react-apollo'
-import { gql } from 'apollo-boost'
+import gql from 'graphql-tag'
+import { useQuery } from '@apollo/react-hooks'
 
 import CollectionPage from './index'
 import Spinner from 'components/Spinner'
@@ -21,19 +21,13 @@ const GET_COLLECTION_BY_TITLE = gql`
   }
 `
 
-export default ({ match }) => (
-  <Query
-    query={GET_COLLECTION_BY_TITLE}
-    variables={{ title: match.params.collectionId }}
-  >
-    {({ loading, data }) => {
-      if (loading) return <Spinner />
+export default ({ match }) => {
+  const { loading, data } = useQuery(GET_COLLECTION_BY_TITLE, {
+    variables: { title: match.params.collectionId }
+  })
 
-      const { getCollectionsByTitle } = data
+  if (loading) return <Spinner />
 
-      return (
-        <CollectionPage collection={getCollectionsByTitle} />
-      )
-    }}
-  </Query>
-)
+  const { getCollectionsByTitle } = data
+  return <CollectionPage collection={getCollectionsByTitle} />
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Mutation } from 'react-apollo'
-import { gql } from 'apollo-boost'
+import gql from 'graphql-tag'
+import { useMutation } from '@apollo/react-hooks'
 
 import CheckoutItem from './index'
 
@@ -24,30 +24,20 @@ const CLEAR_ITEM_FROM_CART = gql`
 `
 
 export default props => {
+  const [addItemToCart] = useMutation(ADD_ITEM_TO_CART)
+  const [removeItemFromCart] = useMutation(REMOVE_ITEM_FROM_CART)
+  const [clearItemFromCart] = useMutation(CLEAR_ITEM_FROM_CART)
+
   return (
-    <Mutation mutation={ADD_ITEM_TO_CART}>
-      {addItemToCart => (
-        <Mutation mutation={REMOVE_ITEM_FROM_CART}>
-          {removeItemFromCart => (
-            <Mutation mutation={CLEAR_ITEM_FROM_CART}>
-              {clearItemFromCart => (
-                <CheckoutItem
-                  {...props}
-                  addItem={item =>
-                    addItemToCart({ variables: { item } })
-                  }
-                  removeItem={item =>
-                    removeItemFromCart({ variables: { item } })
-                  }
-                  clearItem={item =>
-                    clearItemFromCart({ variables: { item } })
-                  }
-                />
-              )}
-            </Mutation>
-          )}
-        </Mutation>
-      )}
-    </Mutation>
+    <CheckoutItem
+      {...props}
+      addItem={item => addItemToCart({ variables: { item } })}
+      removeItem={item =>
+        removeItemFromCart({ variables: { item } })
+      }
+      clearItem={item =>
+        clearItemFromCart({ variables: { item } })
+      }
+    />
   )
 }

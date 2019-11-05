@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Query } from 'react-apollo'
-import { gql } from 'apollo-boost'
+import gql from 'graphql-tag'
+import { useQuery } from '@apollo/react-hooks'
 
 import CheckoutPage from './index'
 
@@ -17,23 +17,13 @@ const GET_CART_TOTAL = gql`
   }
 `
 
-export default () => (
-  <Query query={GET_CART_ITEMS}>
-    {({ data }) => {
-      const { cartItems } = data
-      return (
-        <Query query={GET_CART_TOTAL}>
-          {({ data }) => {
-            const { total } = data
-            return (
-              <CheckoutPage
-                cartItems={cartItems}
-                total={total}
-              />
-            )
-          }}
-        </Query>
-      )
-    }}
-  </Query>
-)
+export default () => {
+  const {
+    data: { cartItems }
+  } = useQuery(GET_CART_ITEMS)
+  const {
+    data: { total }
+  } = useQuery(GET_CART_TOTAL)
+
+  return <CheckoutPage cartItems={cartItems} total={total} />
+}

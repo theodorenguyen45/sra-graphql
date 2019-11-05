@@ -1,6 +1,6 @@
 import React from 'react'
-import { Mutation } from 'react-apollo'
-import { gql } from 'apollo-boost'
+import gql from 'graphql-tag'
+import { useMutation } from '@apollo/react-hooks'
 
 import CollectionItem from './index'
 
@@ -10,13 +10,13 @@ const ADD_ITEM_TO_CART = gql`
   }
 `
 
-export default props => (
-  <Mutation mutation={ADD_ITEM_TO_CART}>
-    {addItemToCart => (
-      <CollectionItem
-        {...props}
-        addItem={item => addItemToCart({ variables: { item } })}
-      />
-    )}
-  </Mutation>
-)
+export default props => {
+  const [addItemToCart] = useMutation(ADD_ITEM_TO_CART)
+
+  return (
+    <CollectionItem
+      {...props}
+      addItem={item => addItemToCart({ variables: { item } })}
+    />
+  )
+}

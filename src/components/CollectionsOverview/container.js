@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Query } from 'react-apollo'
-import { gql } from 'apollo-boost'
+import gql from 'graphql-tag'
+import { useQuery } from '@apollo/react-hooks'
 
 import CollectionOverView from './index'
 import Spinner from 'components/Spinner'
@@ -21,14 +21,10 @@ const GET_COLLECTIONS = gql`
   }
 `
 
-export default () => (
-  <Query query={GET_COLLECTIONS}>
-    {({ loading, error, data }) => {
-      if (loading) return <Spinner />
+export default () => {
+  const { loading, data } = useQuery(GET_COLLECTIONS)
 
-      return (
-        <CollectionOverView collections={data.collections} />
-      )
-    }}
-  </Query>
-)
+  if (loading) return <Spinner />
+
+  return <CollectionOverView collections={data.collections} />
+}
