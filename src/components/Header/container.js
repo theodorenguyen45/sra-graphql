@@ -11,10 +11,10 @@ const GET_CART_HIDDEN = gql`
   }
 `
 
-export default () => {
+export default props => {
   const {
     data: { cartHidden }
   } = useQuery(GET_CART_HIDDEN)
 
-  return <Header hidden={cartHidden} />
+  return <Header hidden={cartHidden} {...props} />
 }

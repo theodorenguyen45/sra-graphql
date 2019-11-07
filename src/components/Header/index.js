@@ -1,9 +1,6 @@
 import React from 'react'
 
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { createStructuredSelector } from 'reselect'
-import { selectCurrentUser } from 'redux/user/UserSelector'
 
 import { auth } from 'firebase/FirebaseUtils'
 
@@ -13,7 +10,7 @@ import { default as CartDropdown } from 'components/CartDropdown/container'
 import { ReactComponent as Logo } from 'assets/crown.svg'
 import './style.scss'
 
-const Header = ({ currentUser, hidden }) => (
+export default ({ currentUser, hidden }) => (
   <div className='header'>
     <Link className='logo-container' to='/'>
       <Logo className='logo' />
@@ -27,7 +24,12 @@ const Header = ({ currentUser, hidden }) => (
         CONTACT
       </Link>
       {currentUser ? (
-        <div className='option' onClick={() => auth.signOut()}>
+        <div
+          className='option'
+          onClick={() => {
+            auth.signOut()
+          }}
+        >
           SIGN OUT
         </div>
       ) : (
@@ -40,9 +42,3 @@ const Header = ({ currentUser, hidden }) => (
     {!hidden && <CartDropdown />}
   </div>
 )
-
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
-})
-
-export default connect(mapStateToProps)(Header)
