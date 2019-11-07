@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 
 import { Switch, Route, Redirect } from 'react-router-dom'
 
@@ -7,14 +7,20 @@ import {
   createUserProfileDocument
 } from 'firebase/FirebaseUtils'
 
-import Homepage from 'pages/HomePage'
-import ShopPage from 'pages/ShopPage'
-import SignInAndSignUpPage from 'pages/SignInAndSignUpPage'
-import { default as CheckoutPage } from 'pages/CheckoutPage/container'
-
+import Spinner from 'components/Spinner'
 import { default as Header } from 'components/Header/container'
+import ErrorBoundary from 'components/ErrorBoundary'
 
 import './App.css'
+
+const HomePage = React.lazy(() => import('pages/HomePage'))
+const ShopPage = React.lazy(() => import('pages/ShopPage'))
+const CheckoutPage = React.lazy(() =>
+  import('pages/CheckoutPage/container')
+)
+const SignInAndSignUpPage = React.lazy(() =>
+  import('pages/SignInAndSignUpPage')
+)
 
 export default () => {
   const [currentUser, setCurrentUser] = React.useState('')
@@ -40,20 +46,28 @@ export default () => {
     <div>
       <Header currentUser={currentUser} />
       <Switch>
-        <Route exact path='/' component={Homepage} />
-        <Route path='/shop' component={ShopPage} />
-        <Route exact path='/checkout' component={CheckoutPage} />
-        <Route
-          exact
-          path='/signin'
-          render={() =>
-            currentUser ? (
-              <Redirect to='/' />
-            ) : (
-              <SignInAndSignUpPage />
-            )
-          }
-        />
+        <ErrorBoundary>
+          <Suspense fallback={<Spinner />}>
+            <Route exact path='/' component={HomePage} />
+            <Route path='/shop' component={ShopPage} />
+            <Route
+              exact
+              path='/checkout'
+              component={CheckoutPage}
+            />
+            <Route
+              exact
+              path='/signin'
+              render={() =>
+                currentUser ? (
+                  <Redirect to='/' />
+                ) : (
+                  <SignInAndSignUpPage />
+                )
+              }
+            />
+          </Suspense>
+        </ErrorBoundary>
       </Switch>
     </div>
   )

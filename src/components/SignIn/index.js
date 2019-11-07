@@ -8,34 +8,31 @@ import CustomButton from 'components/CustomButton'
 import './style.scss'
 
 export default () => {
-  const [input, setInput] = React.useState({
+  const [userDetails, setUserDetails] = React.useState({
     email: '',
-    password: '',
-    error: '',
-    isSubmitting: false
+    password: ''
   })
-  const { email, password, error, isSubmitting } = input
+  const [error, setError] = React.useState('')
+  const [submitting, setSubmitting] = React.useState(false)
+  const { email, password } = userDetails
 
   const handleSubmit = async e => {
     e.preventDefault()
 
-    setInput({ ...input, isSubmitting: true })
+    setSubmitting(true)
 
     try {
       await auth.signInWithEmailAndPassword(email, password)
     } catch (err) {
-      setInput({
-        ...input,
-        error: 'Wrong username or password',
-        isSubmitting: false
-      })
+      setError('Wrong username or password')
+      setSubmitting(false)
     }
   }
 
   const handleChange = e => {
     const { value, name } = e.target
 
-    setInput({ ...input, [name]: value })
+    setUserDetails({ ...userDetails, [name]: value })
   }
 
   return (
@@ -49,7 +46,7 @@ export default () => {
           type='email'
           label='email'
           onChange={handleChange}
-          disabled={isSubmitting}
+          disabled={submitting}
           value={email}
           required
         />
@@ -58,7 +55,7 @@ export default () => {
           type='password'
           label='password'
           onChange={handleChange}
-          disabled={isSubmitting}
+          disabled={submitting}
           value={password}
           required
         />
@@ -66,7 +63,7 @@ export default () => {
           <CustomButton type='Submit'>Sign In</CustomButton>
           <CustomButton
             onClick={signInWithGoogle}
-            disabled={isSubmitting}
+            disabled={submitting}
             isGoogleSignIn
           >
             Sign In With Google

@@ -2,7 +2,7 @@ import React from 'react'
 
 import './style.scss'
 
-export default ({
+const CartItem = ({
   item: { imageUrl, price, name, quantity }
 }) => (
   <div className='cart-item'>
@@ -15,3 +15,5 @@ export default ({
     </div>
   </div>
 )
+
+export default React.memo(CartItem)

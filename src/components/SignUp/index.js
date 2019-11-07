@@ -11,70 +11,73 @@ import {
 import './style.scss'
 
 export default () => {
-  const [input, setInput] = React.useState({
+  const [userDetails, setUserDetails] = React.useState({
     displayName: '',
     email: '',
     password: '',
-    confirmPassword: '',
-    err: '',
-    isSubmitting: false
+    confirmPassword: ''
   })
-
+  const [error, setError] = React.useState('')
+  const [submitting, setSubbmitting] = React.useState(false)
   const {
     displayName,
     email,
     password,
-    confirmPassword,
-    err,
-    isSubmitting
-  } = input
+    confirmPassword
+  } = userDetails
 
-  const handleSubmit = async e => {
-    e.preventDefault()
+  const handleSubmit = React.useCallback(
+    async e => {
+      e.preventDefault()
 
-    setInput({ ...input, isSubmitting: true })
+      setSubbmitting(true)
 
-    if (password !== confirmPassword) {
-      setInput({
-        ...input,
-        err: 'Passwords dont match',
-        isSubmitting: false
-      })
-      return
-    }
+      if (password !== confirmPassword) {
+        setError('Passwords dont match')
+        setSubbmitting(false)
+        return
+      }
 
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      )
+      try {
+        const {
+          user
+        } = await auth.createUserWithEmailAndPassword(
+          email,
+          password
+        )
 
-      await createUserProfileDocument(user, {
-        displayName
-      })
-    } catch ({ message }) {
-      setInput({ ...input, err: message, isSubmitting: false })
-    }
-  }
+        await createUserProfileDocument(user, {
+          displayName
+        })
+      } catch ({ message }) {
+        setError(message)
+        setSubbmitting(false)
+      }
+    },
+    [confirmPassword, displayName, email, password]
+  )
 
-  const handleChange = e => {
-    const { name, value } = e.target
+  const handleChange = React.useCallback(
+    e => {
+      const { name, value } = e.target
 
-    setInput({ ...input, [name]: value })
-  }
+      setUserDetails({ ...userDetails, [name]: value })
+    },
+    [userDetails]
+  )
 
   return (
     <div className='sign-up'>
       <h2 className='title'>I do not have an account</h2>
       <span>Sign up with your email and password</span>
-      {err && <p className='error'>{err}</p>}
+      {error && <p className='error'>{error}</p>}
       <form className='sign-up-form' onSubmit={handleSubmit}>
         <FormInput
           type='text'
           name='displayName'
           value={displayName}
           onChange={handleChange}
-          disabled={isSubmitting}
+          disabled={submitting}
           label='Display Name'
           required
         />
@@ -83,7 +86,7 @@ export default () => {
           name='email'
           value={email}
           onChange={handleChange}
-          disabled={isSubmitting}
+          disabled={submitting}
           label='Email'
           required
         />
@@ -92,7 +95,7 @@ export default () => {
           name='password'
           value={password}
           onChange={handleChange}
-          disabled={isSubmitting}
+          disabled={submitting}
           label='Password'
           required
         />
@@ -101,12 +104,12 @@ export default () => {
           name='confirmPassword'
           value={confirmPassword}
           onChange={handleChange}
-          disabled={isSubmitting}
+          disabled={submitting}
           label='Confirm Password'
           required
         />
         <div className='buttons'>
-          <CustomButton type='submit' disabled={isSubmitting}>
+          <CustomButton type='submit' disabled={submitting}>
             SIGN UP
           </CustomButton>
         </div>

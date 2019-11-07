@@ -1,13 +1,18 @@
 import React from 'react'
 
 import { Route } from 'react-router-dom'
+import Spinner from 'components/Spinner'
 
-import { default as CollectionsOverview } from 'components/CollectionsOverview/container'
-import { default as CollectionPage } from 'pages/CollectionPage/container'
+const CollectionsOverview = React.lazy(() =>
+  import('components/CollectionsOverview/container')
+)
+const CollectionPage = React.lazy(() =>
+  import('pages/CollectionPage/container')
+)
 
-export default ({ match }) => {
-  return (
-    <div className='shop-page'>
+export default ({ match }) => (
+  <div className='shop-page'>
+    <React.Suspense fallback={<Spinner />}>
       <Route
         exact
         path={`${match.path}`}
@@ -17,6 +22,6 @@ export default ({ match }) => {
         path={`${match.path}/:collectionId`}
         component={CollectionPage}
       />
-    </div>
-  )
-}
+    </React.Suspense>
+  </div>
+)

@@ -1,13 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-import Directory from 'components/Directory';
+import Directory from 'components/Directory'
 
-import './style.scss';
+import './style.scss'
 
-export default () => {
-  return (
-    <div className='homepage'>
-      <Directory />
-    </div>
-  );
-};
+export default () => (
+  <div className='homepage'>
+    <Directory />
+  </div>
+)

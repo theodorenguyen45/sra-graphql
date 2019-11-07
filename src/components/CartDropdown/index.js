@@ -1,17 +1,15 @@
 import React from 'react'
 
-import { withRouter } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import CustomButton from 'components/CustomButton'
 import CartItem from 'components/CartItem'
 
 import './style.scss'
 
-const CartDropdown = ({
-  cartItems,
-  history,
-  toggleCartHidden
-}) => {
+export default ({ cartItems, toggleCartHidden }) => {
+  const history = useHistory()
+
   return (
     <div className='cart-dropdown'>
       <div className='cart-items'>
@@ -36,5 +34,3 @@ const CartDropdown = ({
     </div>
   )
 }
-
-export default withRouter(CartDropdown)
