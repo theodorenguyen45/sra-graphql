@@ -24,9 +24,6 @@ export default () => {
   } = useQuery(GET_CART_ITEMS)
 
   return (
-    <CartDropdown
-      cartItems={cartItems}
-      toggleCartHidden={toggleCartHidden}
-    />
+    <CartDropdown cartItems={cartItems} toggleCartHidden={toggleCartHidden} />
   )
 }

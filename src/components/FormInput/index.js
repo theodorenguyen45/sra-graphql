@@ -6,9 +6,7 @@ const FormInput = ({ label, value, ...otherProps }) => (
   <div className='group'>
     <input className='form-input' {...otherProps} />
     {label ? (
-      <label
-        className={`${value ? 'shrink' : ''} form-input-label`}
-      >
+      <label className={`${value ? 'shrink' : ''} form-input-label`}>
         {label}
       </label>
     ) : null}

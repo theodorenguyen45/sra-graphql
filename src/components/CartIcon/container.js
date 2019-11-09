@@ -23,10 +23,5 @@ export default () => {
     data: { itemCount }
   } = useQuery(GET_ITEM_COUNT)
 
-  return (
-    <CartIcon
-      toggleCartHidden={toggleCartHidden}
-      itemCount={itemCount}
-    />
-  )
+  return <CartIcon toggleCartHidden={toggleCartHidden} itemCount={itemCount} />
 }

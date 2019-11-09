@@ -85,10 +85,7 @@ export const resolvers = {
         query: GET_CART_ITEMS
       })
 
-      const newCartItems = removeItemFromCart(
-        cartItems,
-        _args.item
-      )
+      const newCartItems = removeItemFromCart(cartItems, _args.item)
 
       _context.cache.writeQuery({
         query: GET_ITEM_COUNT,
@@ -112,10 +109,7 @@ export const resolvers = {
         query: GET_CART_ITEMS
       })
 
-      const newCartItems = clearItemFromCart(
-        cartItems,
-        _args.item
-      )
+      const newCartItems = clearItemFromCart(cartItems, _args.item)
 
       _context.cache.writeQuery({
         query: GET_ITEM_COUNT,

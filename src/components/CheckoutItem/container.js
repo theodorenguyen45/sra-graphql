@@ -32,12 +32,8 @@ export default props => {
     <CheckoutItem
       {...props}
       addItem={item => addItemToCart({ variables: { item } })}
-      removeItem={item =>
-        removeItemFromCart({ variables: { item } })
-      }
-      clearItem={item =>
-        clearItemFromCart({ variables: { item } })
-      }
+      removeItem={item => removeItemFromCart({ variables: { item } })}
+      clearItem={item => clearItemFromCart({ variables: { item } })}
     />
   )
 }

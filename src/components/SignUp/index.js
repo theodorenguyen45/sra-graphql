@@ -3,10 +3,7 @@ import React from 'react'
 import FormInput from 'components/FormInput'
 import CustomButton from 'components/CustomButton'
 
-import {
-  auth,
-  createUserProfileDocument
-} from 'firebase/FirebaseUtils'
+import { auth, createUserProfileDocument } from 'firebase/FirebaseUtils'
 
 import './style.scss'
 
@@ -19,12 +16,7 @@ export default () => {
   })
   const [error, setError] = React.useState('')
   const [submitting, setSubbmitting] = React.useState(false)
-  const {
-    displayName,
-    email,
-    password,
-    confirmPassword
-  } = userDetails
+  const { displayName, email, password, confirmPassword } = userDetails
 
   const handleSubmit = React.useCallback(
     async e => {
@@ -39,9 +31,7 @@ export default () => {
       }
 
       try {
-        const {
-          user
-        } = await auth.createUserWithEmailAndPassword(
+        const { user } = await auth.createUserWithEmailAndPassword(
           email,
           password
         )

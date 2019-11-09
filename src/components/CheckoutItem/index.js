@@ -2,12 +2,7 @@ import React from 'react'
 
 import './style.scss'
 
-export default ({
-  cartItem,
-  clearItem,
-  addItem,
-  removeItem
-}) => {
+export default ({ cartItem, clearItem, addItem, removeItem }) => {
   const { imageUrl, name, quantity, price } = cartItem
 
   return (
@@ -17,10 +12,7 @@ export default ({
       </div>
       <span className='name'>{name}</span>
       <span className='quantity'>
-        <div
-          className='arrow'
-          onClick={() => removeItem(cartItem)}
-        >
+        <div className='arrow' onClick={() => removeItem(cartItem)}>
           &#10094;
         </div>
         <span className='value'>{quantity}</span>
@@ -29,10 +21,7 @@ export default ({
         </div>
       </span>
       <span className='price'>${price}</span>
-      <div
-        className='remove-button'
-        onClick={() => clearItem(cartItem)}
-      >
+      <div className='remove-button' onClick={() => clearItem(cartItem)}>
         &#10005;
       </div>
     </div>

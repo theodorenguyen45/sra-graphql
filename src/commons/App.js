@@ -2,10 +2,7 @@ import React, { Suspense } from 'react'
 
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-import {
-  auth,
-  createUserProfileDocument
-} from 'firebase/FirebaseUtils'
+import { auth, createUserProfileDocument } from 'firebase/FirebaseUtils'
 
 import Spinner from 'components/Spinner'
 import { default as Header } from 'components/Header/container'
@@ -15,9 +12,7 @@ import './App.css'
 
 const HomePage = React.lazy(() => import('pages/HomePage'))
 const ShopPage = React.lazy(() => import('pages/ShopPage'))
-const CheckoutPage = React.lazy(() =>
-  import('pages/CheckoutPage/container')
-)
+const CheckoutPage = React.lazy(() => import('pages/CheckoutPage/container'))
 const SignInAndSignUpPage = React.lazy(() =>
   import('pages/SignInAndSignUpPage')
 )
@@ -50,20 +45,12 @@ export default () => {
           <Suspense fallback={<Spinner />}>
             <Route exact path='/' component={HomePage} />
             <Route path='/shop' component={ShopPage} />
-            <Route
-              exact
-              path='/checkout'
-              component={CheckoutPage}
-            />
+            <Route exact path='/checkout' component={CheckoutPage} />
             <Route
               exact
               path='/signin'
               render={() =>
-                currentUser ? (
-                  <Redirect to='/' />
-                ) : (
-                  <SignInAndSignUpPage />
-                )
+                currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />
               }
             />
           </Suspense>
