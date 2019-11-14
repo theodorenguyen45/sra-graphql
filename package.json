@@ -1,6 +1,7 @@
 {
   "name": "sra-graphql",
   "version": "1.0.0",
+  "license": "unlicensed",
   "engines": {
     "node": "12.13",
     "npm": "6.12"
