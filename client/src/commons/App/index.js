@@ -7,8 +7,7 @@ import { auth, createUserProfileDocument } from 'firebase/FirebaseUtils'
 import Spinner from 'components/Spinner'
 import { default as Header } from 'components/Header/container'
 import ErrorBoundary from 'components/ErrorBoundary'
-
-import './App.css'
+import AppWrapper from './configs/Wrapper'
 
 const HomePage = React.lazy(() => import('pages/HomePage'))
 const ShopPage = React.lazy(() => import('pages/ShopPage'))
@@ -38,7 +37,7 @@ export default () => {
   }, [])
 
   return (
-    <div>
+    <AppWrapper>
       <Header currentUser={currentUser} />
       <Switch>
         <ErrorBoundary>
@@ -56,6 +55,6 @@ export default () => {
           </Suspense>
         </ErrorBoundary>
       </Switch>
-    </div>
+    </AppWrapper>
   )
 }

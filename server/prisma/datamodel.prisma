@@ -1,0 +1,26 @@
+type User {
+  id: ID! @id
+
+  email: String! @unique
+  password: String!
+
+  name: String!
+
+  cart: [Item!]! @relation(name: "UserCart")
+}
+
+type Collection {
+  id: ID! @id
+
+  title: String!
+
+  items: [Item!] @relation(name: "AllItems")
+}
+
+type Item {
+  id: ID! @id
+  name: String!
+  price: Float!
+  imageUrl: String!
+  collection: Collection @relation(name: "ItemCollection")
+}
