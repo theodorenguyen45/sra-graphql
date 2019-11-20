@@ -14,7 +14,7 @@ type Collection {
 
   title: String!
 
-  items: [Item!] @relation(name: "AllItems")
+  items: [Item!]! 
 }
 
 type Item {
@@ -22,5 +22,5 @@ type Item {
   name: String!
   price: Float!
   imageUrl: String!
-  collection: Collection @relation(name: "ItemCollection")
+  collection: Collection
 }

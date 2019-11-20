@@ -44,7 +44,7 @@ export default () => {
         <FormInput
           name='email'
           type='email'
-          label='email'
+          label='Email'
           onChange={handleChange}
           disabled={submitting}
           value={email}
@@ -53,7 +53,7 @@ export default () => {
         <FormInput
           name='password'
           type='password'
-          label='password'
+          label='Password'
           onChange={handleChange}
           disabled={submitting}
           value={password}

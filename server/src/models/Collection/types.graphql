@@ -1,12 +1,13 @@
 type Query {
   collections: [Collection!]!
+  getCollectionsByTitle(title: String!): Collection!
 }
 
 type Collection {
   id: ID!
   title: String!
 
-  items: [Item!]
+  items: [Item!]!
 }
 
 type Item {

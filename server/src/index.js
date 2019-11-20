@@ -5,7 +5,7 @@ const handleSignal = require('./utils/handleSignal')
 
 const server = new ApolloServer({
   ...options,
-  cors: false,
+  cors: true,
   onHealthCheck: () => {
     return new Promise((resolve, reject) => {
       if (true) resolve()
