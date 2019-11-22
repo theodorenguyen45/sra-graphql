@@ -9,12 +9,28 @@ import { default as Header } from 'components/Header/container'
 import ErrorBoundary from 'components/ErrorBoundary'
 import AppWrapper from './configs/Wrapper'
 
-const HomePage = React.lazy(() => import('pages/HomePage'))
-const ShopPage = React.lazy(() => import('pages/ShopPage'))
-const CheckoutPage = React.lazy(() => import('pages/CheckoutPage/container'))
 const SignInAndSignUpPage = React.lazy(() =>
   import('pages/SignInAndSignUpPage')
 )
+
+const routes = [
+  {
+    exact: true,
+    path: '/',
+    component: React.lazy(() => import('pages/HomePage'))
+  },
+
+  {
+    exact: false,
+    path: '/shop',
+    component: React.lazy(() => import('pages/ShopPage'))
+  },
+  {
+    exact: true,
+    path: '/checkout',
+    component: React.lazy(() => import('pages/CheckoutPage/container'))
+  }
+]
 
 export default () => {
   const [currentUser, setCurrentUser] = React.useState('')
@@ -42,9 +58,9 @@ export default () => {
       <Switch>
         <ErrorBoundary>
           <Suspense fallback={<Spinner />}>
-            <Route exact path='/' component={HomePage} />
-            <Route path='/shop' component={ShopPage} />
-            <Route exact path='/checkout' component={CheckoutPage} />
+            {routes.map((route, index) => (
+              <Route key={index} {...route} />
+            ))}
             <Route
               exact
               path='/signin'
